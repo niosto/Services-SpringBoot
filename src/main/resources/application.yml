@@ -1,61 +1,39 @@
 # Configuración del servidor
 
 server:
-
-port: 8080
-
-servlet:
-
-context-path: /
+  port: 8080
+  servlet:
+    context-path: /
 
 
 # Configuración de la aplicación
-
 spring:
 
-application:
+  application:
+    name: products-api
 
-name: products-api
+  datasource:
+    url: jdbc:h2:mem:productsdb;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
 
-
-# Base de datos H2 (desarrollo)
-
-datasource:
-
-  url: jdbc:h2:mem:productsdb
-  driver-class-name: org.h2.Driver
-  username: sa
-  password: password
-
-
-# JPA/Hibernate
-
-jpa:
-
-  database-platform: org.hibernate.dialect.H2Dialect
-
-  hibernate:
-    ddl-auto: create-drop
-  
-  show-sql: true
-
-  properties:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
-      format_sql: true
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
 
-
-# Console H2 (desarrollo)
-
-h2:
-  console:
-    enabled: true
-    path: /h2-consola
-
+  h2:
+    console:
+      enabled: true
+      path: /h2-consola
 
 # Configuración de logging
-
 logging:
-
   level:
     com.eafit.tutorial: DEBUG
     org.springframework.web: INFO
@@ -69,7 +47,6 @@ logging:
 springdoc:
   api-docs:
     path: /v3/api-docs
-
   swagger-ui:
     path: /swagger-ui.html
     try-it-out-enabled: true
